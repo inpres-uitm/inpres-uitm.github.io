@@ -199,6 +199,9 @@ a:hover .portrait img, .portrait:hover img { filter: none; mix-blend-mode: norma
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media print { .top, .register, .foot .fbig { display: none; } main { padding: 0; } .reveal, .lines > span { opacity: 1; transform: none; } }
 
+/* cross-page fade (browsers with view transitions only) */
+@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .25s; } }
+
 /* ===== about.html ===== */
 .ab-story .cols { align-items: start; row-gap: 40px; }
 .ab-hero img { aspect-ratio: 16 / 9; }
@@ -790,6 +793,9 @@ a:hover .portrait img, .portrait:hover img { filter: none; mix-blend-mode: norma
 .rz-whos { display: flex; flex-wrap: wrap; gap: 14px 28px; margin: 22px 0; }
 .rz-who { display: flex; gap: 12px; align-items: center; text-decoration: none; }
 .rz-who .portrait { width: 88px; flex: none; }
+.rz-cred { list-style: none; margin: 0 0 8px; padding: 0; border-top: 1px solid var(--ink); }
+.rz-cred li { padding: 8px 0 8px 22px; border-bottom: 1px solid #C9C6BC; position: relative; font-size: .95rem; }
+.rz-cred li::before { content: "+"; position: absolute; left: 2px; font-family: var(--mono); color: var(--orange); }
 .rz-who b { display: block; font: 500 .9rem/1.2 var(--sans); }
 .rz-who small { font: .7rem var(--mono); color: var(--ink3); }
 .dark .rz-who small { color: var(--blue2); }
