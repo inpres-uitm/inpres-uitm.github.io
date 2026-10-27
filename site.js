@@ -104,7 +104,7 @@ document.querySelectorAll('[data-list]').forEach(list => {
   };
   const show = i => {
     const p = D[i]; G.forEach(g => g.classList.remove('sel')); G[i].classList.add('sel');
-    tip.innerHTML = `<p class="cap">${p.y} · ${esc(p.pl)}</p><h4>${esc(p.t)}</h4><p>${esc(p.c)}</p>${p.hq ? '<p class="ax">Approximate: placed at the client’s head office, not the site</p>' : ''}`;
+    tip.innerHTML = `<p class="cap">${p.y} · <a href="${esc(p.m)}" target="_blank" rel="noopener">${esc(p.pl)}</a></p><h4>${esc(p.t)}</h4><p><a href="${esc(p.cu)}" target="_blank" rel="noopener">${esc(p.c)}</a></p>${p.hq ? '<p class="ax">Approximate: placed at the client’s head office, not the site</p>' : ''}`;
   };
   G.forEach((g, i) => {
     g.querySelector('title')?.remove();  // the readout replaces the native tooltip

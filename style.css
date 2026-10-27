@@ -202,6 +202,16 @@ a:hover .portrait img, .portrait:hover img { filter: none; mix-blend-mode: norma
 /* cross-page fade (browsers with view transitions only) */
 @media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .25s; } }
 
+/* v4 links: every mention links somewhere; quiet until hovered, small arrow when it leaves the site */
+a.al { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(20, 22, 26, .3); }
+a.al:hover { color: var(--orange); text-decoration-color: currentColor; }
+.dark a.al { text-decoration-color: rgba(239, 237, 230, .35); }
+a.al[target]::after { content: "↗"; font-size: .68em; margin-left: .12em; vertical-align: .32em; opacity: .5; }
+.row h4 a.al, .ind-wall a.al { text-decoration: none; } .row h4 a.al:hover, .ind-wall a.al:hover { text-decoration: underline; }
+.row h4 a.al::after, .ind-wall a.al::after, .rx a.al::after { content: none; }
+.src { display: block; margin-top: 8px; font: 500 .72rem var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink2); }
+.ind-tip a { color: inherit; }
+
 /* ===== about.html ===== */
 .ab-story .cols { align-items: start; row-gap: 40px; }
 .ab-hero img { aspect-ratio: 16 / 9; }
@@ -212,7 +222,8 @@ a:hover .portrait img, .portrait:hover img { filter: none; mix-blend-mode: norma
 .ab-tb { font-size: .82rem; } .ab-tb > div { padding: 12px 14px; }
 .ab-sdg { display: flex; flex-wrap: wrap; gap: 0; margin-top: 6px; }
 .ab-sdg i { font: 400 1.9rem/1 var(--display); font-style: normal; padding: 4px 12px 2px 0; margin-right: 12px; border-right: 1px solid var(--line); }
-.ab-sdg i:last-child { border: 0; }
+.ab-sdg a:last-child i { border: 0; } .ab-sdg a { text-decoration: none; color: inherit; } .ab-sdg a:hover { color: var(--orange); }
+.ab-logos a { display: contents; color: inherit; text-decoration: none; }
 .ab-kv th { font: 500 .7rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink2); width: 9em; padding-right: 20px; }
 .ab-kv tr:first-child th, .ab-kv tr:first-child td { border-top: 1px solid var(--ink); }
 .ab-incore { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); }
@@ -454,6 +465,8 @@ a:hover .portrait img, .portrait:hover img { filter: none; mix-blend-mode: norma
 .partners .lgrid span { position: absolute; left: 8px; bottom: 6px; font: .6rem var(--mono); color: var(--ink3); opacity: 0; transition: .2s; }
 .partners .lgrid > div:hover img { filter: none; opacity: 1; } .partners .lgrid > div:hover span { opacity: 1; }
 @media (max-width: 900px) { .partners .lgrid { margin-top: 24px; grid-template-columns: repeat(3, minmax(0, 1fr)); } .partners .lgrid > div { height: 84px; padding: 12px; } }
+
+.partners .lgrid a { display: contents; }
 
 /* close */
 .close .big { font-size: clamp(3.4rem, 9vw, 9.6rem); font-weight: 300; letter-spacing: -.045em; line-height: .88; margin-bottom: .3em; }
