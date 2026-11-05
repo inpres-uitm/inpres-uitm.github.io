@@ -61,7 +61,7 @@ if (P) {
   const panel = document.querySelector('.panel'), units = document.querySelectorAll('.unit');
   const show = k => { const u = P[k]; units.forEach(x => x.classList.toggle('on', x.dataset.k === k));
     panel.innerHTML = `<p class="cap">${u.tag} · ${u.k}</p><h3>${u.t}</h3><p>${u.d}</p><ul>${u.l.map(x => `<li>${x}</li>`).join('')}</ul>
-      <p class="cap">Who</p><div class="who">${u.who.map(w => `<a href="person-${w[0]}.html"><img src="img/face-${w[0]}.jpg" alt=""><span>${w[1]}</span></a>`).join('')}</div>`; };
+      <p class="cap">Who</p><div class="who">${u.who.map(w => `<a href="person-${w[0]}.html"><img src="img/face-${w[0]}.jpg" alt="" width="600" height="750" loading="lazy"><span>${w[1]}</span></a>`).join('')}</div>`; };
   units.forEach(u => { u.addEventListener('mouseenter', () => show(u.dataset.k)); u.addEventListener('click', () => show(u.dataset.k));
     u.addEventListener('keydown', e => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), show(u.dataset.k))); });
   show(Object.keys(P)[0]);
