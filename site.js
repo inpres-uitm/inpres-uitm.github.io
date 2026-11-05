@@ -32,10 +32,28 @@ addEventListener('resize', tick); tick();
 
 // lightbox for figures marked [data-zoom]
 const lb = document.createElement('div'); lb.className = 'lightbox'; lb.innerHTML = '<div><img alt=""><p></p></div>'; document.body.append(lb);
-lb.onclick = () => lb.classList.remove('on');
-addEventListener('keydown', e => e.key === 'Escape' && lb.classList.remove('on'));
-document.querySelectorAll('[data-zoom]').forEach(f => { f.style.cursor = 'zoom-in'; f.onclick = () => {
-  lb.querySelector('img').src = f.querySelector('img').src; lb.querySelector('p').textContent = f.querySelector('figcaption')?.textContent || ''; lb.classList.add('on'); }; });
+lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Enlarged photo, press Escape to close'); lb.tabIndex = -1;
+let lbFrom = null;
+const lbClose = () => { if (!lb.classList.contains('on')) return; lb.classList.remove('on'); lbFrom?.focus(); };
+lb.onclick = lbClose;
+addEventListener('keydown', e => e.key === 'Escape' && lbClose());
+document.querySelectorAll('[data-zoom]').forEach(f => {
+  const im = f.matches('img') ? f : f.querySelector('img'), cap = f.closest('figure')?.querySelector('figcaption')?.textContent.trim() || '';
+  if (!im) return;
+  // the image (not the figure, whose caption may hold links) is the keyboard target
+  f.style.cursor = 'zoom-in'; im.tabIndex = 0; im.setAttribute('role', 'button'); im.setAttribute('aria-label', 'Enlarge photo: ' + (im.alt || cap || 'image'));
+  f.onclick = e => { if (e?.target.closest?.('a')) return;
+    lbFrom = im; const big = lb.querySelector('img'); big.src = im.src; big.alt = im.alt; lb.querySelector('p').textContent = cap; lb.classList.add('on'); lb.focus(); };
+  im.addEventListener('keydown', e => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), f.onclick())); });
+
+// hero video: respect reduced motion, and give a pause control (WCAG 2.2.2)
+document.querySelectorAll('.hvid video').forEach(v => {
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'vid-toggle';
+  const set = playing => { b.textContent = playing ? 'Pause' : 'Play'; b.setAttribute('aria-label', (playing ? 'Pause' : 'Play') + ' background video'); };
+  if (reduce) { v.removeAttribute('autoplay'); v.pause(); v.load(); }
+  set(!reduce);
+  b.onclick = () => { if (v.paused) { v.play(); set(true); } else { v.pause(); set(false); } };
+  v.parentElement.append(b); });
 
 // plant diagram: hover/click/keyboard a unit to fill the side panel from window.PLANT
 const P = window.PLANT;
@@ -66,7 +84,8 @@ document.querySelectorAll('[data-list]').forEach(list => {
     if (more) more.hidden = n <= lim;
   };
   q && (q.oninput = () => { lim = page; run(); }); sels.forEach(x => x.onchange = () => { lim = page; run(); });
-  segs.forEach(x => x.querySelectorAll('button').forEach(b => b.onclick = () => { x.querySelectorAll('button').forEach(y => y.classList.remove('on')); b.classList.add('on'); lim = page; run(); }));
+  segs.forEach(x => x.querySelectorAll('button').forEach(b => { b.setAttribute('aria-pressed', b.classList.contains('on'));
+    b.onclick = () => { x.querySelectorAll('button').forEach(y => { y.classList.remove('on'); y.setAttribute('aria-pressed', 'false'); }); b.classList.add('on'); b.setAttribute('aria-pressed', 'true'); lim = page; run(); }; }));
   more && (more.onclick = () => { lim += page * 2; run(); });
   run();
 });

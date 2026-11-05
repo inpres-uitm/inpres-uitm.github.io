@@ -1,6 +1,6 @@
 /* INPRES v2 "plant drawing" system. Page modules add their own static/css/*.css after this file. */
 :root {
-  --paper: #EFEDE6; --paper2: #E5E2D7; --card: #F7F6F1; --ink: #14161A; --ink2: #4A4D55; --ink3: #7A7C80;
+  --paper: #EFEDE6; --paper2: #E5E2D7; --card: #F7F6F1; --ink: #14161A; --ink2: #4A4D55; --ink3: #66686D;
   --line: #CBC6B8; --line2: #A9A393; --blue: #2B4C7E; --blue2: #8FA7C9; --orange: #E8551E; --uitm: #5B2A86;
   --display: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; --sans: 'IBM Plex Sans', system-ui, sans-serif;
   --serif: 'IBM Plex Serif', Georgia, serif; --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
@@ -208,6 +208,7 @@ a:hover .portrait img, .portrait:hover img { filter: none; mix-blend-mode: norma
 .mt0 { margin-top: 0; } .mb0 { margin-bottom: 0; } .center { text-align: center; }
 .rule-top { border-top: 1px solid var(--ink); } .bleed { margin-inline: calc(var(--gut) * -1); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+a.sr:focus { position: fixed; top: 8px; left: 8px; z-index: 100; width: auto; height: auto; overflow: visible; clip: auto; padding: 10px 16px; background: var(--ink); color: var(--paper); font: 500 .8rem var(--mono); text-decoration: none; }
 @media print { .top, .register, .foot .fbig { display: none; } main { padding: 0; } .reveal, .lines > span { opacity: 1; transform: none; } }
 
 /* cross-page fade (browsers with view transitions only) */
@@ -247,7 +248,7 @@ a.al[target]::after { content: "↗"; font-size: .68em; margin-left: .12em; vert
 .ab-revt td:last-child { border-right: 0; }
 .ab-revt .rv { font: 500 1.4rem/1 var(--display); width: 3.2em; text-align: center; color: var(--paper); }
 .ab-revt .dt, .ab-revt .by { font: .78rem var(--mono); color: var(--blue2); white-space: nowrap; width: 5em; }
-.ab-revt tr.pre td { color: var(--ink3); } .ab-revt tr.pre .rv { font: .66rem var(--mono); text-transform: uppercase; color: var(--ink3); }
+.ab-revt tr.pre td { color: #8B8D93; } .ab-revt tr.pre .rv { font: .66rem var(--mono); text-transform: uppercase; color: #8B8D93; }
 .ab-revt em { display: inline-block; margin-left: 10px; font: normal .64rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--orange); border: 1px solid var(--orange); padding: 1px 5px; }
 .ab-revt tbody tr.reveal { transform: translateX(-24px); }
 .ab-revt tbody tr.reveal.in { transform: none; }
@@ -455,6 +456,8 @@ a.hz-tm:hover h3 { color: var(--orange); }
 .hhero h1 em { font: italic 300 .86em/1 var(--serif); letter-spacing: -.04em; }
 .hvid { grid-column: 1 / 8; }
 .hvid video { aspect-ratio: 16 / 9; display: block; background: var(--paper2); }
+.vid-toggle { position: absolute; top: 10px; right: 10px; z-index: 2; min-width: 44px; min-height: 32px; padding: 4px 10px; font: 500 .68rem var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--paper); background: rgba(20, 22, 26, .72); border: 1px solid rgba(239, 237, 230, .5); cursor: pointer; }
+.vid-toggle:hover { background: var(--ink); }
 .hside { grid-column: 8 / -1; align-self: end; }
 .hside .lede { margin-bottom: 1.4em; }
 .hbtns { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
