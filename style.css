@@ -459,8 +459,8 @@ a.hz-tm:hover h3 { color: var(--orange); }
 .hside .lede { margin-bottom: 1.4em; }
 .hbtns { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
 .hfacts { list-style: none; margin: 0; padding: 0; font-size: .76rem; border-top: 1px solid var(--line); }
-.hfacts li { display: grid; grid-template-columns: 6.5em 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); }
-.hfacts span { color: var(--ink3); text-transform: uppercase; letter-spacing: .06em; font-size: .68rem; padding-top: 1px; }
+.hfacts li { padding: 9px 0 9px calc(4.94rem + 12px); text-indent: calc(-4.94rem - 12px); border-bottom: 1px solid var(--line); }
+.hfacts span { display: inline-block; width: calc(4.94rem + 12px); text-indent: 0; color: var(--ink3); text-transform: uppercase; letter-spacing: .06em; font-size: .68rem; padding-top: 1px; }
 .ticker { display: grid; grid-template-columns: auto 1fr; align-items: center; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--card); }
 .ticker .cap { margin: 0; padding: 12px var(--gut); border-right: 1px solid var(--ink); background: var(--ink); color: var(--paper); white-space: nowrap; }
 .ticker .tk { overflow: hidden; }
@@ -654,9 +654,9 @@ a.hz-tm:hover h3 { color: var(--orange); }
 .ind-spec dd { margin: 2px 0 0; font: 500 .9rem var(--display); }
 .ind-spec dl div:first-child dd { font: 400 2.2rem/1 var(--display); letter-spacing: -.03em; }
 .ind-ex { list-style: none; margin: 0; padding: 0; font-size: .82rem; line-height: 1.35; }
-.ind-ex li { padding: 6px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 3.4em 1fr; }
-.ind-ex li.cap { display: block; border: 0; padding: 0 0 4px; }
-.ind-ex li span { font: .72rem var(--mono); color: var(--ink2); }
+.ind-ex li { padding: 6px 0 6px 3.4em; text-indent: -3.4em; border-top: 1px solid var(--line); }
+.ind-ex li.cap { display: block; border: 0; padding: 0 0 4px; text-indent: 0; }
+.ind-ex li span { display: inline-block; width: 2.79rem; text-indent: 0; font: .72rem var(--mono); color: var(--ink2); }
 @media (max-width: 1000px) { .ind-specs { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .ind-specs { grid-template-columns: 1fr; } }
 
@@ -707,8 +707,8 @@ a.hz-tm:hover h3 { color: var(--orange); }
 
 /* client wall */
 .ind-wall { margin: 0; font-family: var(--display); line-height: 1.12; letter-spacing: -.02em; text-wrap: pretty; }
-.ind-wall span { display: inline; font-size: clamp(1rem, 1.6vw, 1.35rem); color: var(--ink2); margin-right: .55em; }
-.ind-wall span::after { content: '/'; color: var(--line2); margin-left: .55em; font-weight: 300; }
+.ind-wall span { display: inline; font-size: clamp(1rem, 1.6vw, 1.35rem); color: var(--ink2); margin-right: .3em; }
+.ind-wall span::after { content: '/ '; color: var(--line2); margin-left: .55em; font-weight: 300; }
 .ind-wall span:last-child::after { content: ''; }
 .ind-wall .w2 { font-size: clamp(1.4rem, 2.4vw, 2.1rem); color: var(--ink); }
 .ind-wall .w3 { font-size: clamp(1.8rem, 3.4vw, 3rem); color: var(--ink); }
